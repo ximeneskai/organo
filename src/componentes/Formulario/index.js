@@ -6,31 +6,24 @@ import './Formulario.css'
 
 const Formulario = (props) => {
 
-    const relacoes = [
-        'Desconhecide',
-        'Conhecide',
-        'Colega de trabalho',
-        'Colega',
-        'Parente',
-        'Amigue',
-        'Amigue próxime',
-        'Melhor amigue'
-    ]
-
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
     const [relacao, setRelacao] = useState('')
 
     const aoSalvar = (evento) => {
-        evento.preventDefault();
-        console.log('Form foi submetido! => ', nome, cargo, imagem);
-        props.aoColaboradorCadastrado({
+        evento.preventDefault()
+        props.aNovaPessoaCadastrada({
             nome,
             cargo,
             imagem,
             relacao
         })
+
+        setNome('')
+        setCargo('')
+        setImagem('')
+        setRelacao('')
     }
 
     return (
@@ -61,7 +54,7 @@ const Formulario = (props) => {
                 <ListaSuspensa 
                     obrigatorio={true} 
                     label='Relação' 
-                    itens={relacoes}
+                    itens={props.relacoes}
                     valor={relacao}
                     aoAlterado={valor => setRelacao(valor)}/>
                 <Botao texto='Criar Card'/>
