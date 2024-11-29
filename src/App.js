@@ -41,7 +41,7 @@ function App() {
   const [pessoas, setPessoas] = useState([])
 
   const aNovaPessoaAdicionada = (pessoa) => {
-    console.log(pessoa);
+    debugger
     setPessoas([...pessoas, pessoa])
   }
 

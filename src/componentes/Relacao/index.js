@@ -10,7 +10,7 @@ const Relacao = (props) => {
         >
             <h3 style={{ borderColor: props.corPrimaria }}>{props.nome}</h3>
             <div className='pessoas'>
-            {props.pessoas.map(pessoa => <Pessoa nome={pessoa.nome} cargo={pessoa.cargo} imagem={pessoa.imagem}/>)}
+            {props.pessoas.map(pessoa => <Pessoa corDeFundo={props.corPrimaria} key={pessoa.nome} nome={pessoa.nome} cargo={pessoa.cargo} imagem={pessoa.imagem}/>)}
             </div>
         </section>
     )
