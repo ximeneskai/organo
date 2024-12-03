@@ -1,26 +1,24 @@
 import Pessoa from '../Pessoa'
 import './Relacao.css'
+import hexToRgba from 'hex-to-rgba'
 
-const Relacao = (props, aoDeletar) => {
+const Relacao = ({ relacao, pessoas, aoDeletar, mudarCor }) => {
     return (
         
-        props.pessoas.length > 0 && <section 
+       pessoas.length > 0 && <section 
         className='relacao' 
-        style={{ backgroundColor: props.corSecundaria }}
-        >   
-            <input value={props.corPrimaria} type='color' className='input-cor'/>
+        style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: hexToRgba(relacao.cor, '0.6') }}>   
 
-            <h3 style={{ borderColor: props.corPrimaria }}>{props.nome}</h3>
+            <input onChange={evento => mudarCor(evento.target.value, relacao.nome)} value={relacao.cor} type='color' className='input-cor' />
+
+            <h3 style={{ borderColor: relacao.cor }}>{relacao.nome}</h3>
             <div className='pessoas'>
-            {props.pessoas.map(pessoa => 
-                <Pessoa 
-                corDeFundo={props.corPrimaria} 
-                key={pessoa.nome} 
-                nome={pessoa.nome} 
-                cargo={pessoa.cargo} 
-                imagem={pessoa.imagem} 
-                aoDeletar={aoDeletar}
-                />
+                {pessoas.map((pessoa, indice) => 
+                    <Pessoa 
+                        key={indice} 
+                        pessoa={pessoa}
+                        corDeFundo={relacao.cor}  
+                        aoDeletar={aoDeletar} />
             )}
             </div>
         </section>
