@@ -41,8 +41,11 @@ function App() {
   const [pessoas, setPessoas] = useState([])
 
   const aNovaPessoaAdicionada = (pessoa) => {
-    debugger
     setPessoas([...pessoas, pessoa])
+  }
+
+  function deletarColaborador() {
+    console.log('deletando colaborador...');
   }
 
   return (
@@ -56,11 +59,12 @@ function App() {
       
       {relacoes.map(relacao => 
       <Relacao 
-      key={relacao.nome} 
-      nome={relacao.nome}
-      corPrimaria={relacao.corPrimaria}
-      corSecundaria={relacao.corSecundaria}
-      pessoas={pessoas.filter(pessoa => pessoa.relacao === relacao.nome)}
+        key={relacao.nome} 
+        nome={relacao.nome}
+        corPrimaria={relacao.corPrimaria}
+        corSecundaria={relacao.corSecundaria}
+        pessoas={pessoas.filter(pessoa => pessoa.relacao === relacao.nome)}
+        aoDeletar={deletarColaborador}
       />)}
 
       <Rodape />
